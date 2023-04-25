@@ -5,14 +5,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.buyit.buyitseller.databinding.FragmentAddProductCategoryBinding
 import com.buyit.buyitseller.interfaces.BottomSheetListener
+import com.buyit.buyitseller.repositories.ShopRepositoryImp
+import com.buyit.buyitseller.viewmodels.ShopViewModel
+import com.buyit.buyitseller.viewmodels.ShopViewModelFactory
 
 class AddProductCategoryFragment(private val bottomSheetListener: BottomSheetListener) :
     BottomSheetDialogFragment() {
     private var _binding: FragmentAddProductCategoryBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var viewModel: ShopViewModel
+    private val factory = ShopViewModelFactory(ShopRepositoryImp())
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +28,7 @@ class AddProductCategoryFragment(private val bottomSheetListener: BottomSheetLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this, factory)[ShopViewModel::class.java]
         bottomSheetListener.viewControl(binding)
     }
 

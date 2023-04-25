@@ -2,12 +2,17 @@ package com.buyit.buyitseller.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.repositories.ShopRepository
 
 class ShopViewModel(private val repository: ShopRepository) : ViewModel() {
     private val _category = MutableLiveData<ArrayList<String>>()
     val category: MutableLiveData<ArrayList<String>> get() = _category
+
+    private val _msg = MutableLiveData<String>()
+    val msg: MutableLiveData<String> get() = _msg
+
     fun fetchShop() = repository.fetchShop()
 
     fun shopStatusUpdate(id: String, status: String) {
@@ -29,5 +34,11 @@ class ShopViewModel(private val repository: ShopRepository) : ViewModel() {
     }
 
     fun getShopDetails(id: String) = repository.getShopDetails(id)
+
+    fun addProductCategory(shopId: String, productCategory: ProductCategory) {
+        repository.addProductCategory(shopId, productCategory) {
+            _msg.value = it
+        }
+    }
 
 }

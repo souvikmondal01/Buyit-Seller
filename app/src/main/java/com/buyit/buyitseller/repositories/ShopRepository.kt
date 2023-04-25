@@ -1,5 +1,7 @@
 package com.buyit.buyitseller.repositories
 
+import androidx.lifecycle.MutableLiveData
+import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
@@ -12,4 +14,5 @@ interface ShopRepository {
     fun deleteShop(id: String)
     fun getCategory(result: (ArrayList<String>) -> Unit)
     fun getShopDetails(id: String): Task<DocumentSnapshot>
+    fun addProductCategory(shopId: String, productCategory: ProductCategory, msg: (String) -> Unit)
 }

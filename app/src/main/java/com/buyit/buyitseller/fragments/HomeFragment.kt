@@ -1,6 +1,8 @@
 package com.buyit.buyitseller.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,8 +31,10 @@ import com.buyit.buyitseller.utils.Constant.ID
 import com.buyit.buyitseller.utils.Constant.KEY
 import com.buyit.buyitseller.utils.Constant.OPEN
 import com.buyit.buyitseller.utils.Constant.SHOP
+import com.buyit.buyitseller.utils.Constant.SHOP_ID
 import com.buyit.buyitseller.utils.Constant.SHOP_NAME
 import com.buyit.buyitseller.utils.Constant.SHUT_DOWN
+import com.buyit.buyitseller.utils.Constant.SPF
 import com.buyit.buyitseller.utils.Constant.STATUS
 import com.buyit.buyitseller.utils.Constant.VERIFICATION_STATUS
 import com.buyit.buyitseller.viewmodels.ShopViewModel
@@ -69,8 +73,6 @@ class HomeFragment : Fragment(), ShopOnClickListener {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter.startListening()
-
-
     }
 
     override fun onDestroyView() {
@@ -96,7 +98,12 @@ class HomeFragment : Fragment(), ShopOnClickListener {
 
     override fun onShopClick(shop: ShopModel, holder: ShopAdapter.ViewHolder) {
         findNavController().navigate(R.id.action_homeFragment_to_shopFragment)
-        setFragmentResult(KEY, bundleOf(SHOP_NAME to shop.shopName, ID to shop.id))
+        val sharedPreferences =
+            requireActivity().getSharedPreferences(SPF, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(SHOP_ID, shop.id)
+        editor.putString(SHOP_NAME, shop.shopName)
+        editor.apply()
     }
 
     override fun viewUpdate(shop: ShopModel, holder: ShopAdapter.ViewHolder) {
@@ -123,12 +130,14 @@ class HomeFragment : Fragment(), ShopOnClickListener {
                     btnShutDown.setBackgroundColour(R.color.grey_light)
                     ivDot.setColourFilter(R.color.green)
                 }
+
                 CLOSE -> {
                     btnOpen.setBackgroundColour(R.color.green_light)
                     btnClose.setBackgroundColour(R.color.red)
                     btnShutDown.setBackgroundColour(R.color.grey_light)
                     ivDot.setColourFilter(R.color.red)
                 }
+
                 else -> {
                     btnOpen.setBackgroundColour(R.color.green_light)
                     btnClose.setBackgroundColour(R.color.red_light)

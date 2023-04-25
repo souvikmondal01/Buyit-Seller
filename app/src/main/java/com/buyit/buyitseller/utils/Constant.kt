@@ -4,6 +4,7 @@ object Constant {
     const val SHOP = "shop"
     const val SHOP_NAME = "shopName"
     const val ID = "id"
+    const val SHOP_ID = "shopId"
     const val STATUS = "status"
     const val PENDING = "pending"
     const val SHUT_DOWN = "Shut Down"
@@ -12,4 +13,7 @@ object Constant {
     const val KEY = "key"
     const val DONE = "done"
     const val VERIFICATION_STATUS = "verificationStatus"
+    const val SPF = "sharedPreferences"
+    const val PRODUCT = "product"
+
 }

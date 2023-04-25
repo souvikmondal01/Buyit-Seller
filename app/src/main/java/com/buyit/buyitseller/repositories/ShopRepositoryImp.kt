@@ -1,7 +1,10 @@
 package com.buyit.buyitseller.repositories
 
+import androidx.lifecycle.MutableLiveData
+import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.utils.CommonUtils.db
+import com.buyit.buyitseller.utils.Constant
 import com.buyit.buyitseller.utils.Constant.PENDING
 import com.buyit.buyitseller.utils.Constant.SHOP
 import com.buyit.buyitseller.utils.Constant.SHUT_DOWN
@@ -9,6 +12,11 @@ import com.buyit.buyitseller.utils.Constant.STATUS
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class ShopRepositoryImp : ShopRepository {
     private val collection = db.collection(SHOP)
@@ -52,6 +60,31 @@ class ShopRepositoryImp : ShopRepository {
 
     override fun getShopDetails(id: String): Task<DocumentSnapshot> {
         return db.collection(SHOP).document(id).get()
+    }
+
+    override fun addProductCategory(
+        shopId: String,
+        productCategory: ProductCategory,
+        msg: (String) -> Unit
+    ) {
+
+        GlobalScope.launch {
+            try {
+                val dbRef =
+                    db.collection(SHOP).document(shopId)
+                        .collection(Constant.PRODUCT)
+                val id = dbRef.document().id
+                productCategory.id = id
+                dbRef.document(id).set(productCategory).await()
+                withContext(Dispatchers.Main) {
+                    msg.invoke("added successfully")
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    msg.invoke(e.message.toString())
+                }
+            }
+        }
     }
 
 }
