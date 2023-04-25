@@ -1,5 +1,6 @@
 package com.buyit.buyitseller.repositories
 
+import com.buyit.buyitseller.models.Product
 import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.utils.CommonUtils.db
@@ -8,6 +9,7 @@ import com.buyit.buyitseller.utils.Constant.PENDING
 import com.buyit.buyitseller.utils.Constant.SHOP
 import com.buyit.buyitseller.utils.Constant.SHUT_DOWN
 import com.buyit.buyitseller.utils.Constant.STATUS
+import com.buyit.buyitseller.utils.Constant.SUCCESS
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
@@ -92,6 +94,33 @@ class ShopRepositoryImp : ShopRepository {
             query,
             ProductCategory::class.java
         ).build()
+    }
+
+    override fun addProduct(
+        shopId: String,
+        productCategoryId: String,
+        product: Product,
+        msg: (String) -> Unit
+    ) {
+        GlobalScope.launch {
+            try {
+                val dbRef =
+                    db.collection(SHOP).document(shopId).collection(
+                        Constant.PRODUCT
+                    ).document(productCategoryId).collection(Constant.PRODUCT)
+                val id = dbRef.document().id
+                product.id = id
+                dbRef.document(id).set(product).await()
+                withContext(Dispatchers.Main) {
+                    msg.invoke(SUCCESS)
+                }
+
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    msg.invoke(e.message.toString())
+                }
+            }
+        }
     }
 
 }

@@ -18,7 +18,7 @@ import com.buyit.buyitseller.R
 import com.buyit.buyitseller.activities.ProfileActivity
 import com.buyit.buyitseller.adapters.ShopAdapter
 import com.buyit.buyitseller.databinding.FragmentHomeBinding
-import com.buyit.buyitseller.interfaces.ShopOnClickListener
+import com.buyit.buyitseller.interfaces.ShopListener
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.repositories.ShopRepositoryImp
 import com.buyit.buyitseller.utils.CommonUtils.db
@@ -40,7 +40,7 @@ import com.buyit.buyitseller.utils.show
 import com.buyit.buyitseller.viewmodels.ShopViewModel
 import com.buyit.buyitseller.viewmodels.ShopViewModelFactory
 
-class HomeFragment : Fragment(), ShopOnClickListener {
+class HomeFragment : Fragment(), ShopListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ShopViewModel

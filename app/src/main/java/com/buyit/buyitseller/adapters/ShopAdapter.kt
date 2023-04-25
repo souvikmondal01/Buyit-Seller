@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.buyit.buyitseller.databinding.ListShopBinding
-import com.buyit.buyitseller.interfaces.ShopOnClickListener
+import com.buyit.buyitseller.interfaces.ShopListener
 import com.buyit.buyitseller.models.ShopModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class ShopAdapter(
     options: FirestoreRecyclerOptions<ShopModel>,
-    private val listener: ShopOnClickListener
+    private val listener: ShopListener
 ) :
     FirestoreRecyclerAdapter<ShopModel, ShopAdapter.ViewHolder>(options) {
 

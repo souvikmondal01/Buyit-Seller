@@ -1,9 +1,7 @@
 package com.buyit.buyitseller.interfaces
 
-import android.view.View
 import com.buyit.buyitseller.databinding.FragmentAddProductCategoryBinding
-import com.buyit.buyitseller.viewmodels.ShopViewModel
 
-interface BottomSheetListener {
+interface CategoryBottomSheetListener {
     fun viewControl(binding: FragmentAddProductCategoryBinding)
 }

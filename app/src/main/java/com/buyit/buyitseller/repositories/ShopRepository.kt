@@ -1,5 +1,6 @@
 package com.buyit.buyitseller.repositories
 
+import com.buyit.buyitseller.models.Product
 import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -16,4 +17,11 @@ interface ShopRepository {
     fun getShopDetails(id: String): Task<DocumentSnapshot>
     fun addProductCategory(shopId: String, productCategory: ProductCategory, msg: (String) -> Unit)
     fun fetchProductCategory(query: CollectionReference): FirestoreRecyclerOptions<ProductCategory>
+
+    fun addProduct(
+        shopId: String,
+        productCategoryId: String,
+        product: Product,
+        msg: (String) -> Unit
+    )
 }

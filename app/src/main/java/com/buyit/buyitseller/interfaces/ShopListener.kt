@@ -3,7 +3,7 @@ package com.buyit.buyitseller.interfaces
 import com.buyit.buyitseller.adapters.ShopAdapter.ViewHolder
 import com.buyit.buyitseller.models.ShopModel
 
-interface ShopOnClickListener {
+interface ShopListener {
     fun onOpenClick(shop: ShopModel, holder: ViewHolder)
     fun onCloseClick(shop: ShopModel, holder: ViewHolder)
     fun onShutDownClick(shop: ShopModel, holder: ViewHolder)

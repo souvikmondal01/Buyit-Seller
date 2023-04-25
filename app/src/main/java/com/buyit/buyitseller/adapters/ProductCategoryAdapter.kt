@@ -4,11 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.buyit.buyitseller.databinding.ListProductCategoryBinding
+import com.buyit.buyitseller.interfaces.ProductCategoryListener
 import com.buyit.buyitseller.models.ProductCategory
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class ProductCategoryAdapter(options: FirestoreRecyclerOptions<ProductCategory>) :
+class ProductCategoryAdapter(
+    options: FirestoreRecyclerOptions<ProductCategory>,
+    private val listener: ProductCategoryListener
+) :
     FirestoreRecyclerAdapter<ProductCategory, ProductCategoryAdapter.ViewHolder>(options) {
     class ViewHolder(val binding: ListProductCategoryBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -25,6 +29,9 @@ class ProductCategoryAdapter(options: FirestoreRecyclerOptions<ProductCategory>)
         holder.apply {
             binding.apply {
                 tvProductCategory.text = model.category.toString()
+            }
+            itemView.setOnClickListener {
+                listener.productCategoryOnClick(holder, position, model)
             }
         }
     }

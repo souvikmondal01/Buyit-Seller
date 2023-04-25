@@ -10,10 +10,13 @@ object Constant {
     const val SHUT_DOWN = "Shut Down"
     const val OPEN = "Open"
     const val CLOSE = "Close"
+    const val SUCCESS = "success"
     const val KEY = "key"
     const val DONE = "done"
     const val VERIFICATION_STATUS = "verificationStatus"
     const val SPF = "sharedPreferences"
+    const val SPF_CATEGORY = "sharedPreferencesCategory"
     const val PRODUCT = "product"
-
+    const val PRODUCT_CATEGORY_ID = "productCategoryId"
+    const val PRODUCT_CATEGORY_NAME = "productCategoryName"
 }
