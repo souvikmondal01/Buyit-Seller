@@ -123,4 +123,11 @@ class ShopRepositoryImp : ShopRepository {
         }
     }
 
+    override fun fetchProduct(query: CollectionReference): FirestoreRecyclerOptions<Product> {
+        return FirestoreRecyclerOptions.Builder<Product>().setQuery(
+            query,
+            Product::class.java
+        ).build()
+    }
+
 }

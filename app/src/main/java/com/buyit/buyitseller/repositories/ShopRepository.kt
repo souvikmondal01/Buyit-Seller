@@ -17,11 +17,12 @@ interface ShopRepository {
     fun getShopDetails(id: String): Task<DocumentSnapshot>
     fun addProductCategory(shopId: String, productCategory: ProductCategory, msg: (String) -> Unit)
     fun fetchProductCategory(query: CollectionReference): FirestoreRecyclerOptions<ProductCategory>
-
     fun addProduct(
         shopId: String,
         productCategoryId: String,
         product: Product,
         msg: (String) -> Unit
     )
+
+    fun fetchProduct(query: CollectionReference): FirestoreRecyclerOptions<Product>
 }

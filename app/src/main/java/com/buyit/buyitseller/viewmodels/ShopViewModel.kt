@@ -52,4 +52,6 @@ class ShopViewModel(private val repository: ShopRepository) : ViewModel() {
     ) = repository.addProduct(shopId, productCategoryId, product) {
         _msg.value = it
     }
+
+    fun fetchProduct(query: CollectionReference) = repository.fetchProduct(query)
 }
