@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:backgroundTint="#F8F8F8"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/white"
+    app:strokeWidth="2dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_shop"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="#40FFC947"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/ssp_regular"
+            android:maxLines="1"
+            android:text="Shop Name"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cv_shop"
+            app:layout_constraintTop_toTopOf="@id/cv_shop" />
+
+        <TextView
+            android:id="@+id/tv_shop_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Shop Category"
+            app:layout_constraintStart_toEndOf="@id/cv_shop"
+            app:layout_constraintTop_toBottomOf="@id/tv_shop_name" />
+
+        <ImageView
+            android:id="@+id/iv_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/circle"
+            app:layout_constraintBottom_toBottomOf="@id/tv_shop_category"
+            app:layout_constraintStart_toEndOf="@id/tv_shop_category"
+            app:layout_constraintTop_toTopOf="@id/tv_shop_category"
+            app:tint="@android:color/transparent" />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/tv_shop_category"
+            app:layout_constraintTop_toBottomOf="@id/tv_shop_category">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star"
+                app:tint="@color/orange_200" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star"
+                app:tint="@color/orange_200" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star"
+                app:tint="@color/orange_200" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star"
+                app:tint="@color/orange_200" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star_half"
+                app:tint="@color/orange_200" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_shop_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Pending..."
+            app:layout_constraintStart_toEndOf="@id/cv_shop"
+            app:layout_constraintTop_toBottomOf="@id/ll" />
+
+        <LinearLayout
+            android:id="@+id/ll_btns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@id/cv_shop">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_open"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Open"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                app:cornerRadius="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:backgroundTint="@color/red_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Close"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                app:cornerRadius="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_shut_down"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Shut Down"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                app:cornerRadius="0dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_shop">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:backgroundTint="@color/red_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:layout_margin="8dp">-->
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_shop"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:background="@color/orange_200"-->
+    <!--        android:src="@drawable/shopping_bag"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_shop_name"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="8dp"-->
+    <!--        android:text="Shop Name"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/iv_shop"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/iv_shop" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_shop_category"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:text="Shop Category"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/iv_shop"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tv_shop_name" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_is_shop_verified"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/iv_shop"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tv_shop_category"-->
+    <!--        tools:text="Done" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_shop_status"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/iv_shop"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tv_is_shop_verified"-->
+    <!--        tools:text="Open" />-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:weightSum="3"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/iv_shop">-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btn_open"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:layout_marginHorizontal="4dp"-->
+    <!--                android:layout_marginVertical="8dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:backgroundTint="@android:color/holo_green_light"-->
+    <!--                android:text="Open"-->
+    <!--                android:textAllCaps="false" />-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btn_close"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:layout_marginHorizontal="4dp"-->
+    <!--                android:layout_marginVertical="8dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:backgroundTint="@android:color/holo_red_light"-->
+    <!--                android:text="Close"-->
+    <!--                android:textAllCaps="false" />-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btn_shut_down"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:layout_marginHorizontal="4dp"-->
+    <!--                android:layout_marginVertical="8dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:backgroundTint="@android:color/darker_gray"-->
+    <!--                android:text="Shut Down"-->
+    <!--                android:textAllCaps="false" />-->
+
+    <!--        </LinearLayout>-->
+
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
