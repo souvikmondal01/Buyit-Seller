@@ -9,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -23,12 +21,9 @@ import com.buyit.buyitseller.databinding.FragmentHomeBinding
 import com.buyit.buyitseller.interfaces.ShopOnClickListener
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.repositories.ShopRepositoryImp
-import com.buyit.buyitseller.utils.*
 import com.buyit.buyitseller.utils.CommonUtils.db
 import com.buyit.buyitseller.utils.Constant.CLOSE
 import com.buyit.buyitseller.utils.Constant.DONE
-import com.buyit.buyitseller.utils.Constant.ID
-import com.buyit.buyitseller.utils.Constant.KEY
 import com.buyit.buyitseller.utils.Constant.OPEN
 import com.buyit.buyitseller.utils.Constant.SHOP
 import com.buyit.buyitseller.utils.Constant.SHOP_ID
@@ -37,6 +32,11 @@ import com.buyit.buyitseller.utils.Constant.SHUT_DOWN
 import com.buyit.buyitseller.utils.Constant.SPF
 import com.buyit.buyitseller.utils.Constant.STATUS
 import com.buyit.buyitseller.utils.Constant.VERIFICATION_STATUS
+import com.buyit.buyitseller.utils.hide
+import com.buyit.buyitseller.utils.setBackgroundColour
+import com.buyit.buyitseller.utils.setColourFilter
+import com.buyit.buyitseller.utils.setStatusBarColor
+import com.buyit.buyitseller.utils.show
 import com.buyit.buyitseller.viewmodels.ShopViewModel
 import com.buyit.buyitseller.viewmodels.ShopViewModelFactory
 
@@ -48,13 +48,11 @@ class HomeFragment : Fragment(), ShopOnClickListener {
     private lateinit var adapter: ShopAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setStatusBarColor(R.color.orange_700)
-        requireActivity().window.decorView.systemUiVisibility =
-            View.VISIBLE
+        requireActivity().window.decorView.systemUiVisibility = View.VISIBLE
         return binding.root
     }
 
@@ -98,8 +96,7 @@ class HomeFragment : Fragment(), ShopOnClickListener {
 
     override fun onShopClick(shop: ShopModel, holder: ShopAdapter.ViewHolder) {
         findNavController().navigate(R.id.action_homeFragment_to_shopFragment)
-        val sharedPreferences =
-            requireActivity().getSharedPreferences(SPF, Context.MODE_PRIVATE)
+        val sharedPreferences = requireActivity().getSharedPreferences(SPF, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString(SHOP_ID, shop.id)
         editor.putString(SHOP_NAME, shop.shopName)

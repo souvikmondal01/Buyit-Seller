@@ -1,6 +1,5 @@
 package com.buyit.buyitseller.repositories
 
-import androidx.lifecycle.MutableLiveData
 import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.utils.CommonUtils.db
@@ -11,6 +10,7 @@ import com.buyit.buyitseller.utils.Constant.SHUT_DOWN
 import com.buyit.buyitseller.utils.Constant.STATUS
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -85,6 +85,13 @@ class ShopRepositoryImp : ShopRepository {
                 }
             }
         }
+    }
+
+    override fun fetchProductCategory(query: CollectionReference): FirestoreRecyclerOptions<ProductCategory> {
+        return FirestoreRecyclerOptions.Builder<ProductCategory>().setQuery(
+            query,
+            ProductCategory::class.java
+        ).build()
     }
 
 }

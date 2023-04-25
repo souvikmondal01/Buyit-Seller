@@ -3,11 +3,13 @@ package com.buyit.buyitseller.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.buyit.buyitseller.R
 import com.buyit.buyitseller.databinding.ListProductCategoryBinding
+import com.buyit.buyitseller.models.ProductCategory
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class ProductCategoryAdapter(private val list: ArrayList<String>) :
-    RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder>() {
+class ProductCategoryAdapter(options: FirestoreRecyclerOptions<ProductCategory>) :
+    FirestoreRecyclerAdapter<ProductCategory, ProductCategoryAdapter.ViewHolder>(options) {
     class ViewHolder(val binding: ListProductCategoryBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -19,18 +21,12 @@ class ProductCategoryAdapter(private val list: ArrayList<String>) :
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: ProductCategory) {
         holder.apply {
-            binding.tvProductCategory.text = list[position]
-            itemView.setOnClickListener {
-
+            binding.apply {
+                tvProductCategory.text = model.category.toString()
             }
-
         }
-
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
 }

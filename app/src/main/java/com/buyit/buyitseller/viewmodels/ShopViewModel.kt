@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.buyit.buyitseller.models.ProductCategory
 import com.buyit.buyitseller.models.ShopModel
 import com.buyit.buyitseller.repositories.ShopRepository
+import com.google.firebase.firestore.CollectionReference
 
 class ShopViewModel(private val repository: ShopRepository) : ViewModel() {
     private val _category = MutableLiveData<ArrayList<String>>()
@@ -40,5 +41,6 @@ class ShopViewModel(private val repository: ShopRepository) : ViewModel() {
             _msg.value = it
         }
     }
+    fun fetchProductCategory(query: CollectionReference) = repository.fetchProductCategory(query)
 
 }
